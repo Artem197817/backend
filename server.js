@@ -1,23 +1,30 @@
 const express = require('express');
 const path = require('path');
+const eh = require('express-handlebars')
+
+const indexRoutes = require('./routes/index');
+const aboutRoutes = require('./routes/about');
+const contactRoutes = require('./routes/contact');
+const productRoutes = require('./routes/product');
+
+
 const app = express();
 
+app.engine('handlebars', eh.engine());
+app.set('view engine', 'handlebars');
+app.set('views', './views');
+
 app.use(express.static(path.join(__dirname, '/public')));
-app.get('/index', (req, res) => {
-    res.sendFile(__dirname + '/views/index.html');
-})
 
-app.get('/about', (req, res) => {
-    res.sendFile(__dirname + '/views/about.html');
-})
 
-app.get('/contact', (req, res) => {
-    res.sendFile(__dirname + '/views/contact.html');
-})
+app.use('/', indexRoutes);
 
-app.get('/product', (req, res) => {
-    res.sendFile(__dirname + '/views/product.html');
-})
+app.use('/about', aboutRoutes);
+
+app.use('/contact', contactRoutes);
+
+app.use('/product', productRoutes);
+
 
 
 app.listen(process.argv[2], () => {
