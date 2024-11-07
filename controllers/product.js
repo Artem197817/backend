@@ -8,7 +8,10 @@ class ProductController {
 
         const product = await ProductModel.getAll();
 
-        res.sendFile (path.resolve(__dirname + '/../views/product.html'));
+        res.render ('product', {
+            title: 'Product Page',
+            product: product,
+        });
     }
 
 }

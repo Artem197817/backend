@@ -9,14 +9,13 @@
 </div>
 
 <div class="products">
+{{#each product}}
+
     <div class="product">
-        <div class="title">Product</div>
-        <div class="description">description product</div>
-        <div class="price">199</div>
+        <div class="title">{{{title}}}</div>
+        <div class="description">{{{description}}}</div>
+        <div class="price">{{{price}}}</div>
     </div>
-    <div class="product">
-        <div class="title">Product</div>
-        <div class="description">description product</div>
-        <div class="price">199</div>
-    </div>
+
+{{/each}}
 </div>
